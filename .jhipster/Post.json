@@ -1,6 +1,6 @@
 {
   "applications": ["gateway", "blog"],
-  "changelogDate": "20220809040719",
+  "changelogDate": "20220810231707",
   "clientRootFolder": "blog",
   "databaseType": "sql",
   "dto": "no",
@@ -34,6 +34,7 @@
     {
       "otherEntityField": "name",
       "otherEntityName": "blog",
+      "otherEntityRelationshipName": "post",
       "relationshipName": "blog",
       "relationshipType": "many-to-one"
     },

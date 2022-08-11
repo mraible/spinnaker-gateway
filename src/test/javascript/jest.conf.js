@@ -22,7 +22,6 @@ module.exports = {
     '^.+\\.tsx?$': 'ts-jest',
   },
   moduleNameMapper: {
-    rxjs: '<rootDir>/node_modules/rxjs/dist/bundles/rxjs.umd.js',
     '^@/(.*)$': '<rootDir>/src/main/webapp/app/$1',
     ...pathsToModuleNameMapper(paths, { prefix: `<rootDir>/${baseUrl}/` }),
   },

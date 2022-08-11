@@ -12,6 +12,7 @@ import com.okta.developer.gateway.repository.EntityManager;
 import com.okta.developer.gateway.repository.UserRepository;
 import com.okta.developer.gateway.security.AuthoritiesConstants;
 import com.okta.developer.gateway.service.dto.AdminUserDTO;
+import com.okta.developer.gateway.service.dto.UserDTO;
 import com.okta.developer.gateway.service.mapper.UserMapper;
 import java.time.Instant;
 import java.util.*;

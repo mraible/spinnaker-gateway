@@ -1,3 +1,4 @@
+import { entityItemSelector } from '../../support/commands';
 import {
   entityTableSelector,
   entityDetailsButtonSelector,
@@ -15,9 +16,9 @@ describe('Blog e2e test', () => {
   const blogPageUrlPattern = new RegExp('/blog(\\?.*)?$');
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
-  const blogSample = { name: 'scale Metal Computers', handle: 'Grass-roots throughput Hat' };
+  const blogSample = { name: 'Handmade next-generation 1080p', handle: 'hack wireless' };
 
-  let blog;
+  let blog: any;
 
   beforeEach(() => {
     cy.login(username, password);
@@ -44,7 +45,7 @@ describe('Blog e2e test', () => {
     cy.visit('/');
     cy.clickOnEntityMenuItem('blog');
     cy.wait('@entitiesRequest').then(({ response }) => {
-      if (response.body.length === 0) {
+      if (response!.body.length === 0) {
         cy.get(entityTableSelector).should('not.exist');
       } else {
         cy.get(entityTableSelector).should('exist');
@@ -68,7 +69,7 @@ describe('Blog e2e test', () => {
         cy.get(entityCreateSaveButtonSelector).should('exist');
         cy.get(entityCreateCancelButtonSelector).click();
         cy.wait('@entitiesRequest').then(({ response }) => {
-          expect(response.statusCode).to.equal(200);
+          expect(response!.statusCode).to.equal(200);
         });
         cy.url().should('match', blogPageUrlPattern);
       });
@@ -106,28 +107,18 @@ describe('Blog e2e test', () => {
         cy.getEntityDetailsHeading('blog');
         cy.get(entityDetailsBackButtonSelector).click();
         cy.wait('@entitiesRequest').then(({ response }) => {
-          expect(response.statusCode).to.equal(200);
+          expect(response!.statusCode).to.equal(200);
         });
         cy.url().should('match', blogPageUrlPattern);
       });
 
-      it('edit button click should load edit Blog page and go back', () => {
+      it('edit button click should load edit Blog page', () => {
         cy.get(entityEditButtonSelector).first().click();
         cy.getEntityCreateUpdateHeading('Blog');
         cy.get(entityCreateSaveButtonSelector).should('exist');
         cy.get(entityCreateCancelButtonSelector).click();
         cy.wait('@entitiesRequest').then(({ response }) => {
-          expect(response.statusCode).to.equal(200);
-        });
-        cy.url().should('match', blogPageUrlPattern);
-      });
-
-      it('edit button click should load edit Blog page and save', () => {
-        cy.get(entityEditButtonSelector).first().click();
-        cy.getEntityCreateUpdateHeading('Blog');
-        cy.get(entityCreateSaveButtonSelector).click();
-        cy.wait('@entitiesRequest').then(({ response }) => {
-          expect(response.statusCode).to.equal(200);
+          expect(response!.statusCode).to.equal(200);
         });
         cy.url().should('match', blogPageUrlPattern);
       });
@@ -137,10 +128,10 @@ describe('Blog e2e test', () => {
         cy.getEntityDeleteDialogHeading('blog').should('exist');
         cy.get(entityConfirmDeleteButtonSelector).click();
         cy.wait('@deleteEntityRequest').then(({ response }) => {
-          expect(response.statusCode).to.equal(204);
+          expect(response!.statusCode).to.equal(204);
         });
         cy.wait('@entitiesRequest').then(({ response }) => {
-          expect(response.statusCode).to.equal(200);
+          expect(response!.statusCode).to.equal(200);
         });
         cy.url().should('match', blogPageUrlPattern);
 
@@ -157,18 +148,18 @@ describe('Blog e2e test', () => {
     });
 
     it('should create an instance of Blog', () => {
-      cy.get(`[data-cy="name"]`).type('bus GB salmon').should('have.value', 'bus GB salmon');
+      cy.get(`[data-cy="name"]`).type('SAS').should('have.value', 'SAS');
 
-      cy.get(`[data-cy="handle"]`).type('Global').should('have.value', 'Global');
+      cy.get(`[data-cy="handle"]`).type('Avon').should('have.value', 'Avon');
 
       cy.get(entityCreateSaveButtonSelector).click();
 
       cy.wait('@postEntityRequest').then(({ response }) => {
-        expect(response.statusCode).to.equal(201);
-        blog = response.body;
+        expect(response!.statusCode).to.equal(201);
+        blog = response!.body;
       });
       cy.wait('@entitiesRequest').then(({ response }) => {
-        expect(response.statusCode).to.equal(200);
+        expect(response!.statusCode).to.equal(200);
       });
       cy.url().should('match', blogPageUrlPattern);
     });

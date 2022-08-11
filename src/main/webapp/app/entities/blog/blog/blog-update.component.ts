@@ -65,7 +65,7 @@ export default class BlogUpdate extends Vue {
           this.isSaving = false;
           this.$router.go(-1);
           const message = this.$t('blogApp.blogBlog.updated', { param: param.id });
-          return (this.$root as any).$bvToast.toast(message.toString(), {
+          return this.$root.$bvToast.toast(message.toString(), {
             toaster: 'b-toaster-top-center',
             title: 'Info',
             variant: 'info',
@@ -84,7 +84,7 @@ export default class BlogUpdate extends Vue {
           this.isSaving = false;
           this.$router.go(-1);
           const message = this.$t('blogApp.blogBlog.created', { param: param.id });
-          (this.$root as any).$bvToast.toast(message.toString(), {
+          this.$root.$bvToast.toast(message.toString(), {
             toaster: 'b-toaster-top-center',
             title: 'Success',
             variant: 'success',
