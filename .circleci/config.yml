@@ -30,8 +30,8 @@ jobs:
             - node
             - node_modules
             - ~/.gradle
-            - /home/circleci/.cache/Cypress
           key: v1-dependencies-{{ checksum "build.gradle" }}-{{ checksum "package-lock.json" }}
+
       - run:
           name: Give Executable Power
           command: 'chmod +x gradlew'
@@ -57,7 +57,7 @@ jobs:
 #          command: npm run ci:e2e:teardown
       - run:
           name: Build Spring Boot Docker Image
-          command: ./gradlew bootBuildImage --imageName=$IMAGE_NAME
+          command: ./gradlew -Pprod bootBuildImage --imageName=$IMAGE_NAME
       - run:
           name: Publish Docker Image
           command: |
