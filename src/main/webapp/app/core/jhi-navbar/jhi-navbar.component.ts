@@ -66,9 +66,7 @@ export default class JhiNavbar extends Vue {
     this.accountService()
       .hasAnyAuthorityAndCheckAuth(authorities)
       .then(value => {
-        if (this.hasAnyAuthorityValues[authorities] !== value) {
-          this.hasAnyAuthorityValues = { ...this.hasAnyAuthorityValues, [authorities]: value };
-        }
+        this.hasAnyAuthorityValues[authorities] = value;
       });
     return this.hasAnyAuthorityValues[authorities] ?? false;
   }

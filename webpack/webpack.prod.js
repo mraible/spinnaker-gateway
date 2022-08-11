@@ -18,10 +18,6 @@ const webpackConfig = {
     }),
   },
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
-  output: {
-    filename: 'app/[name].[contenthash].bundle.js',
-    chunkFilename: 'app/[id].[chunkhash].chunk.js',
-  },
   optimization: {
     moduleIds: 'deterministic',
     minimizer: [
@@ -76,10 +72,7 @@ const webpackConfig = {
       extractComments: false,
     }),
     // extract css into its own file
-    new MiniCssExtractPlugin({
-      filename: 'content/[name].[contenthash].css',
-      chunkFilename: 'content/[id].css',
-    }),
+    new MiniCssExtractPlugin(),
     // keep module.id stable when vendor modules does not change
     new ForkTsCheckerWebpackPlugin({
       typescript: {

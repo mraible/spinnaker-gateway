@@ -1,12 +1,6 @@
 jib {
     from {
         image = "eclipse-temurin:11-jre-focal"
-        platforms {
-            platform {
-                architecture = "${findProperty('jibArchitecture') ?: 'amd64'}"
-                os = "linux"
-            }
-        }
     }
     to {
         image = "gateway:latest"
