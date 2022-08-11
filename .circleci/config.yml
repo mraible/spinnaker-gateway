@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     environment:
-      IMAGE_NAME: mraible/gateway
+      IMAGE_NAME: mraible/gateway:v1
     machine:
       image: ubuntu-2004:current
     resource_class: large
